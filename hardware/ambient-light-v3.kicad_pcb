@@ -3,7 +3,7 @@
   (general
     (links 43)
     (no_connects 0)
-    (area 129.709499 86.309499 155.090501 101.690501)
+    (area 129.044999 85.644999 264.203574 149.675)
     (thickness 1.6)
     (drawings 12)
     (tracks 162)
@@ -77,7 +77,8 @@
     (pad_size 1.00076 1.09982)
     (pad_drill 0.6)
     (pad_to_mask_clearance 0)
-    (aux_axis_origin 0 0)
+    (aux_axis_origin 176.9 165.9)
+    (grid_origin 176.9 165.9)
     (visible_elements FFFFFF7F)
     (pcbplotparams
       (layerselection 0x010f8_80000001)
@@ -6632,7 +6633,7 @@
   (gr_text "Ambient\nLight\n3.0" (at 135.1 92.1 180) (layer F.SilkS)
     (effects (font (size 0.7 0.7) (thickness 0.15)))
   )
-  (gr_text "Copyright Tinkerforge GmbH 2015.\nThis documentation describes Open Hardware and is licensed under the\nCERN OHL v. 1.1.\nYou may redistribute and modify this documentation under the terms of the\nCERN OHL v.1.1. (http://ohwr.org/cernohl). This documentation is distributed\nWITHOUT ANY EXPRESS OR IMPLIED WARRANTY, INCLUDING OF\nMERCHANTABILITY, SATISFACTORY QUALITY AND FITNESS FOR A\nPARTICULAR PURPOSE. Please see the CERN OHL v.1.1 for applicable\nconditions\n" (at 234.2 142.7) (layer Cmts.User)
+  (gr_text "Copyright Tinkerforge GmbH 2015.\nThis documentation describes Open Hardware and is licensed under the\nCERN OHL v. 1.1.\nYou may redistribute and modify this documentation under the terms of the\nCERN OHL v.1.1. (http://ohwr.org/cernohl). This documentation is distributed\nWITHOUT ANY EXPRESS OR IMPLIED WARRANTY, INCLUDING OF\nMERCHANTABILITY, SATISFACTORY QUALITY AND FITNESS FOR A\nPARTICULAR PURPOSE. Please see the CERN OHL v.1.1 for applicable\nconditions\n" (at 253 156.3) (layer Cmts.User)
     (effects (font (size 1 1) (thickness 0.15)))
   )
   (gr_text tinkerforge.com (at 150.5 92.5 180) (layer F.SilkS)
