@@ -28,15 +28,18 @@
 #include "bricklib2/hal/system_timer/system_timer.h"
 #include "bricklib2/logging/logging.h"
 #include "communication.h"
+#include "ltr329.h"
 
 int main(void) {
 	logging_init();
 	logd("Start Ambient Light Bricklet 3.0\n\r");
 
 	communication_init();
+	ltr329_init();
 
 	while(true) {
 		bootloader_tick();
 		communication_tick();
+		ltr329_tick();
 	}
 }
