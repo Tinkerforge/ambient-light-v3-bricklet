@@ -1,0 +1,32 @@
+Needs["NETLink`"]
+LoadNETAssembly["Tinkerforge",NotebookDirectory[]<>"../../.."]
+
+host="localhost"
+port=4223
+uid="XYZ"(*Change XYZ to the UID of your Ambient Light Bricklet 3.0*)
+
+(*Create IPConnection and device object*)
+ipcon=NETNew["Tinkerforge.IPConnection"]
+al=NETNew["Tinkerforge.BrickletAmbientLightV3",uid,ipcon]
+ipcon@Connect[host,port]
+
+(*Callback function for illuminance callback*)
+IlluminanceCB[sender_,illuminance_]:=
+ Module[{},
+  Print["Illuminance: "<>ToString[N[Quantity[illuminance,"lx/100"]]]];
+  Print["Too bright, close the curtains!"]
+ ]
+
+AddEventHandler[al@IlluminanceCallback,IlluminanceCB]
+
+(*Configure threshold for illuminance "greater than 500 lx"*)
+(*with a debounce period of 1s (1000ms)*)
+option=Tinkerforge`BrickletAmbientLightV3`THRESHOLDUOPTIONUGREATER
+al@SetIlluminanceCallbackConfiguration[1000,False,option,500*100,0]
+
+Input["Click OK to exit"]
+
+(*Clean up*)
+ipcon@Disconnect[]
+ReleaseNETObject[al]
+ReleaseNETObject[ipcon]
