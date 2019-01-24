@@ -1,0 +1,8 @@
+
+
+# Change XYZ to the UID of your Ambient Light Bricklet 3.0
+
+setup:
+	# Get current Illuminance
+	subscribe to tinkerforge/response/ambient_light_v3/XYZ/get_illuminance
+	publish '' to tinkerforge/request/ambient_light_v3_bricklet/XYZ/get_illuminance 
