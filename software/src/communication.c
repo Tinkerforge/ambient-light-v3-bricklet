@@ -74,7 +74,6 @@ void communication_tick(void) {
 }
 
 void communication_init(void) {
-	// TODO: Add proper functions
 	callback_value_init_uint32_t(&callback_value_illuminance, ltr329_get_illuminance);
 
 	communication_callback_init();
