@@ -6,4 +6,4 @@ setup:
 	publish '{"register": true}' to tinkerforge/register/ambient_light_v3_bricklet/XYZ/illuminance # Register illuminance callback
 	
 	# Set period for illuminance callback to 1s (1000ms) without a threshold
-	publish '{"period": 1000, "value_has_to_change": false, "option": "off", "min": 0, "max": 0}' to tinkerforge/request/ambient_light_v3_bricklet/XYZ/set_illuminance_callback_configuration  
+	publish '{"period": 1000, "value_has_to_change": false, "option": "off", "min": 0, "max": 0}' to tinkerforge/request/ambient_light_v3_bricklet/XYZ/set_illuminance_callback_configuration
