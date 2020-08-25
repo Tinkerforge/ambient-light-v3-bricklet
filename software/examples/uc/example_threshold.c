@@ -1,13 +1,9 @@
-
-
 #include "bindings/hal_common.h"
 #include "bindings/bricklet_ambient_light_v3.h"
 
 #define UID "XYZ" // Change XYZ to the UID of your Ambient Light Bricklet 3.0
 
 void check(int rc, const char* msg);
-
-
 
 // Callback function for illuminance callback
 void illuminance_handler(TF_AmbientLightV3 *device, uint32_t illuminance,
@@ -17,7 +13,6 @@ void illuminance_handler(TF_AmbientLightV3 *device, uint32_t illuminance,
 	tf_hal_printf("Illuminance: %d 1/%d lx\n", illuminance, 100.0);
 	tf_hal_printf("Too bright, close the curtains!\n");
 }
-
 
 TF_AmbientLightV3 al;
 

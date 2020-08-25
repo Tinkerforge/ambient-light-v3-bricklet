@@ -1,14 +1,9 @@
-
-
 #include "bindings/hal_common.h"
 #include "bindings/bricklet_ambient_light_v3.h"
 
 #define UID "XYZ" // Change XYZ to the UID of your Ambient Light Bricklet 3.0
 
 void check(int rc, const char* msg);
-
-
-
 
 TF_AmbientLightV3 al;
 
