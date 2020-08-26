@@ -19,15 +19,13 @@ void example_setup(TF_HalContext *hal) {
 	// Create device object
 	check(tf_ambient_light_v3_create(&al, UID, hal), "create device object");
 
-
 	// Register illuminance callback to function illuminance_handler
 	tf_ambient_light_v3_register_illuminance_callback(&al,
-	                                                 illuminance_handler,
-	                                                 NULL);
+	                                                  illuminance_handler,
+	                                                  NULL);
 
 	// Set period for illuminance callback to 1s (1000ms) without a threshold
 	tf_ambient_light_v3_set_illuminance_callback_configuration(&al, 1000, false, 'x', 0, 0);
-
 }
 
 void example_loop(TF_HalContext *hal) {
