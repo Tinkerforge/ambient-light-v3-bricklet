@@ -23,7 +23,7 @@ void example_setup(TF_HalContext *hal) {
 	uint32_t illuminance;
 	check(tf_ambient_light_v3_get_illuminance(&al, &illuminance), "get Illuminance");
 
-	tf_hal_printf("Illuminance: %d 1/%d lx\n", illuminance, 100.0);
+	tf_hal_printf("Illuminance: %d 1/%d lx\n", illuminance, 100);
 }
 
 void example_loop(TF_HalContext *hal) {
