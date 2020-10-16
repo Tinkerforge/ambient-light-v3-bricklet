@@ -18,7 +18,7 @@ static void illuminance_handler(TF_AmbientLightV3 *device, uint32_t illuminance,
                                 void *user_data) {
 	(void)device; (void)user_data; // avoid unused parameter warning
 
-	tf_hal_printf("Illuminance: %d 1/%d lx\n", illuminance, 100.0);
+	tf_hal_printf("Illuminance: %d 1/%d lx\n", illuminance, 100);
 	tf_hal_printf("Too bright, close the curtains!\n");
 }
 
