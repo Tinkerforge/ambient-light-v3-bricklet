@@ -9,13 +9,13 @@
 
 void check(int rc, const char* msg);
 
-void example_setup(TF_HalContext *hal);
-void example_loop(TF_HalContext *hal);
+void example_setup(TF_HAL *hal);
+void example_loop(TF_HAL *hal);
 
 
 static TF_AmbientLightV3 al;
 
-void example_setup(TF_HalContext *hal) {
+void example_setup(TF_HAL *hal) {
 	// Create device object
 	check(tf_ambient_light_v3_create(&al, UID, hal), "create device object");
 
@@ -26,7 +26,7 @@ void example_setup(TF_HalContext *hal) {
 	tf_hal_printf("Illuminance: %d 1/%d lx\n", illuminance, 100);
 }
 
-void example_loop(TF_HalContext *hal) {
+void example_loop(TF_HAL *hal) {
 	// Poll for callbacks
 	tf_hal_callback_tick(hal, 0);
 }
