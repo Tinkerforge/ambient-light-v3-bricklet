@@ -4,5 +4,5 @@
 2019-05-29: 2.0.1 (b4586ee)
 - Fix SPITFP IRQ race condition with other higher prio IRQs (through bricklib2)
 
-2025-03-13: 2.0.2 (TBD)
+2025-03-13: 2.0.2 (888dd01)
 - Improve robustness of i2c communication
