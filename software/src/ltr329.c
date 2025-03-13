@@ -88,7 +88,7 @@ void ltr329_update_values(const uint16_t values[2], const uint8_t status) {
 }
 
 
-void ltr329_update_configuration(void) {
+bool ltr329_update_configuration(void) {
 	uint8_t range = LTR329_RANGE_8000LUX;
 	switch(ltr329.illuminance_range) {
 		case 0: range = LTR329_RANGE_64000LUX; break;
@@ -114,13 +114,27 @@ void ltr329_update_configuration(void) {
 
 	// Enable ALS and set gain
 	uint8_t data = (range << 2) | (1 << 0);
-	i2c_fifo_coop_write_register(&ltr329.i2c_fifo, LTR329_REG_ALS_CONTR, 1, &data, true);
+	uint32_t i2c_status = i2c_fifo_coop_write_register(&ltr329.i2c_fifo, LTR329_REG_ALS_CONTR, 1, &data, true);
+	if (i2c_status != 0) {
+		return false;
+	}
 
 	// Set integration time
 	data = time << 3;
-	i2c_fifo_coop_write_register(&ltr329.i2c_fifo, LTR329_REG_ALS_MEAS_RATE, 1, &data, true);
+	i2c_status = i2c_fifo_coop_write_register(&ltr329.i2c_fifo, LTR329_REG_ALS_MEAS_RATE, 1, &data, true);
+	if (i2c_status != 0) {
+		return false;
+	}
 
 	ltr329.throw_next_data_away = true;
+
+	return true;
+}
+
+void ltr329_task_reset_i2c(void) {
+	coop_task_sleep_ms(5);
+	i2c_fifo_init(&ltr329.i2c_fifo);
+	coop_task_sleep_ms(5);
 }
 
 void ltr329_task_tick(void) {
@@ -135,14 +149,20 @@ void ltr329_task_tick(void) {
 			ltr329.illuminance_range = ltr329.new_illuminance_range;
 			ltr329.integration_time  = ltr329.new_integration_time;
 
+			if(!ltr329_update_configuration()) {
+				ltr329_task_reset_i2c();
+				continue;
+			}
+
 			ltr329.new_illuminance_range = 255;
 			ltr329.new_integration_time  = 255;
-
-			ltr329_update_configuration();
 		}
 
 		coop_task_sleep_ms(10);
-		i2c_fifo_coop_read_register(&ltr329.i2c_fifo, LTR329_REG_ALS_STATUS, 1, &status);
+		uint32_t i2c_status = i2c_fifo_coop_read_register(&ltr329.i2c_fifo, LTR329_REG_ALS_STATUS, 1, &status);
+		if (i2c_status != 0) {
+			ltr329_task_reset_i2c();
+		}
 
 		// Check if new data is available
 		if(status & (1 << 2)) {
